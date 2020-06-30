@@ -10,7 +10,7 @@
     <ul>
     <li><a href="{{ route('home') }}">Home page</a></li>
     <li><a href="{{ route('contact') }}">Contact page</a></li>
-    <li><a href="{{ route('blog-post',[ 'id' => 1 ]) }}">Blog post</a></li>
+    <li><a href="{{ route('posts.index') }}">Posts</a></li>
     </ul>
     @yield('content')
 </body>
