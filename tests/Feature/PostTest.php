@@ -46,10 +46,6 @@ class PostTest extends TestCase
              ->assertStatus(302)
              ->assertSessionHas('errors');
         $messages = session('errors');
-        dd($messages->getMessages());
         
-    }
-    public function testUpdateValidBlogPost(){
-
     }
 }
