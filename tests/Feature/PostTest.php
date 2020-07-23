@@ -28,11 +28,14 @@ class PostTest extends TestCase
         $response->assertSeeText("New Blog");
     }
     public function testStoreValid(){
+        
         $params = [
             'title' => 'Valid title',
             'content' => 'at least 10 chars'
         ];
-        $this->post('/posts', $params) 
+
+        $this->actingAs($this->user())
+             ->post('/posts', $params) 
              ->assertStatus(302)
              ->assertSessionHas('status');
         $this->assertEquals(session('status'), 'New Post Has Been Added');
@@ -42,7 +45,8 @@ class PostTest extends TestCase
             'title' => 'x',
             'content' => 'x'
         ];
-        $this->post('/posts', $params) 
+        $this->actingAs($this->user())
+             ->post('/posts', $params) 
              ->assertStatus(302)
              ->assertSessionHas('errors');
         $messages = session('errors');

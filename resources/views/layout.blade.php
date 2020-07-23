@@ -15,7 +15,17 @@
             <a class="p-2 text-dark" href="{{ route('home') }}">Home page</a>
             <a class="p-2 text-dark" href="{{ route('contact') }}">Contact page</a>
             <a class="p-2 text-dark" href="{{ route('posts.index') }}">Posts</a>
-            <a class="p-2 text-dark" href="{{ route('posts.create') }}">Add Post</a>
+            <a class="p-2 text-dark" href="{{ route('posts.create') }}">Add</a>
+
+            @guest
+                @if ( Route::has('register') )
+                    <a href="{{ route('register') }}" class="p-2 text-dark">Register</a>
+                @endif
+                <a href="{{ route('login') }}" class="p-2 text-dark">Login</a>
+            @else
+                <a href="{{ route('logout') }}" class="p-2 text-dark" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout ({{ Auth::user()->name }})</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
+            @endguest
         </nav>
     </div>
     <div class="container">
